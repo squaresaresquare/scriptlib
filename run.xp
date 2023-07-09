@@ -1,0 +1,94 @@
+#!/usr/bin/expect
+set timeout 60
+set user [lindex $argv 0]
+set file [lindex $argv 1]
+set command [lindex $argv 2]
+
+if {$user == "h"} {
+    puts "./run.xp <user> <file of hosts> \"<command>\""
+    exit
+}
+if {$user == "help"} {
+    puts "./run.xp <user> <file of hosts> \"<command>\""
+    exit
+}
+
+set f [open $file]
+set hosts [split [read $f] "\n"]
+close $f
+
+stty -echo
+send_user -- "Password : "
+expect_user -re "(.*)\n"
+puts "\n"
+stty echo
+set pass $expect_out(1,string)
+
+log_user 0
+foreach host $hosts {
+  if { $host != "" } {
+    puts "host is $host\n"
+    spawn ssh -o StrictHostKeyChecking=no "$user\@$host"
+    puts "login $user\@$host"
+    expect {
+    "assword:"
+    {
+        send "$pass\r"
+        puts "type password"
+    }
+    "]$ " {
+        flush stdout
+        send -- "$command\r"
+        expect "]$ "
+        puts $expect_out(buffer)
+      continue  
+    }
+    timeout
+    {
+        puts "timeout 1\r"
+        continue
+    }
+    eof
+    {
+        puts "eof\r"
+        continue
+    }
+    }
+    expect {
+    "]$ "
+    {
+        flush stdout
+        send -- "$command\r"
+        expect "]$ "
+        puts $expect_out(buffer)
+        continue
+    }
+    timeout
+    {
+        puts "timeout 2\r"
+        continue
+    }
+    eof
+    {
+        puts "eof\r"
+        continue
+    }
+    }
+    expect {
+    "]$ "
+    {
+        puts "logout\r"
+        send -- "logout\r"
+    }
+    timeout
+    {
+        puts "timeout 3\r"
+    }
+    eof
+    {
+        puts "eof\r"
+    }
+   }
+  }
+}
+puts "\n"
