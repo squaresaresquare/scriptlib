@@ -1,0 +1,6 @@
+#!/bin/bash
+tagname="$1"
+if [[ "$tagname" != "" ]];then
+  git tag -fa $tagname -m "update"
+  git push -f origin $tagname
+fi 

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for i in $(kubectl get pods -n calico-system -l k8s-app=calico-typha --no-headers | awk '{print $1}');do kubectl delete pod $i -n calico-system;sleep 1;num_deps="$(kubectl get deployment.apps/calico-typha -n calico-system --no-headers | awk '{print $2}' | awk -F/ '{print $2}')";until [[ "$(kubectl get pods -n calico-system -l k8s-app=calico-typha --no-headers | grep -c '1/1')" == "$num_deps" ]];do echo ".";sleep 10;done;done;sleep 60;for i in $(kubectl get pods -n calico-system -l k8s-app=calico-typha --no-headers | awk '{print $1}');do kubectl logs $i -n calico-system | grep -i RemoteClusterConfiguration | grep x509;done;echo;echo "complete"

@@ -62,13 +62,11 @@ function draw_box {
    [ $length -gt 1 ] && v=$(printf "%-${length}s" "─") || v=""
    echo "${v// /─}──┘" 
 }
+
+piped_in=$(< /dev/stdin)
 width_flag=false
 COLS=0
-if read -t 0;then
-    piped_in="$(< /dev/stdin)"
-fi
 terminal_width=$(tput cols)
-
 while getopts 'w' OPTION; do
   case "$OPTION" in 
     w) 

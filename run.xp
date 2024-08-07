@@ -39,9 +39,9 @@ foreach host $hosts {
     "]$ " {
         flush stdout
         send -- "$command\r"
-        expect "]$ "
+        expect "]$ " 
         puts $expect_out(buffer)
-      continue  
+     	continue   
     }
     timeout
     {
@@ -59,7 +59,7 @@ foreach host $hosts {
     {
         flush stdout
         send -- "$command\r"
-        expect "]$ "
+        expect "]$ " 
         puts $expect_out(buffer)
         continue
     }
@@ -89,6 +89,6 @@ foreach host $hosts {
         puts "eof\r"
     }
    }
-  }
+  } 
 }
 puts "\n"

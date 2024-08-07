@@ -1,0 +1,23 @@
+#!/bin/bash
+usage() { echo "Usage: $0 [-m] [-h]" 1>&2; exit 1; }
+while getopts "mh" o; do
+    case "${o}" in
+        m)
+            make >/dev/null 2>&1
+            ;;
+        h)
+            usage
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+git status
+read -p "Does this look okay? (y/n): " ans
+if [[ $(echo "$ans" | tr '[:lower:]' '[:upper:]') == "Y" ]];then
+    git add -A
+    git commit --amend --no-edit
+    git push --force
+fi 
