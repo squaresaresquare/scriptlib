@@ -6,7 +6,7 @@ import json
 class nomad_wrapper:
     def __init__(self,dev=False):
         self.base_url = "https://nomad.prod.box.net/devicemgr/api/devices/"
-        self.auth_token = "e0d57175f5f1c02a4ce744eb8a0ec7f63ce48b0d"
+        self.auth_token = "redacted"
 
     def get_device(self,hostname):
         url = self.base_url + "?fqdn__contains=" + str(hostname)

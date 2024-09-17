@@ -1,0 +1,18 @@
+step 1
+ask clarifying questions
+   1. ask about scope, per day or the whole dataset
+   2. how should duplicates be handled
+   3. scale, does the data fit in memory
+   4. how much does performance, vs memory/cpu resource usage, vs maintainability/reusability matter
+   5. is the dataset pre-sorted by anything
+   
+if performance matters use map reduce
+   what's the key what's the value
+   list vs set (sets use less resources and don't have duplicates)
+   
+use contains instead of looping (O vs O^2)
+
+If memory is an issue use a generator to create one record at a time.
+
+
+   

@@ -19,12 +19,14 @@ class myClass:
       except Exception as e:
         print("error message ",e)
         print("at: ",inspect.stack()[0][3]+"("+newVal+")")
+def main():
+    c1 = myClass("something")
+    c1.myFunc("something new")
 
-c1 = myClass("something")
-c1.myFunc("something new")
+    print(str(c1))
 
-print(str(c1))
-
+if __name__ == "__main__":
+        main()
 
 
 

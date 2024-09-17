@@ -1,0 +1,31 @@
+python set intersection with tradeoff examples
+
+# initializing lists
+test_list1 = [ [1, 2], [3, 4], [5, 6] ]
+test_list2 = [ [3, 4], [5, 7], [1, 2] ]
+
+nested loop (most maintainable)
+time O(n^2)
+memory O(n)
+res_list = []
+for i in test_list1:
+    if i in test_list2:
+        res_list.append(i)
+        
+list comprehension
+time O(n^2)
+memory O(n)
+res_list = [i for i in test_list1 if i in test_list2]
+
+map reduce (highest performance)
+time O(n)
+memory O(n)
+res_set = set(map(tuple, test_list1)) & set(map(tuple, test_list2))
+res_list = list(map(list, res_set))
+
+filter and lambda (lowest memory usage)
+time O(n^2)
+memory O(k) where k is the size of the intersection
+set1 = set(map(tuple, test_list1))
+set2 = set(map(tuple, test_list2))
+intersection_list = list(filter(lambda x: tuple(x) in set2, test_list1))
