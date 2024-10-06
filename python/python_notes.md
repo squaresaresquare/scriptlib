@@ -26,7 +26,18 @@ print(y)
 <re.Match object; span=(5, 7), match='ai'>
 ['ai', 'ai']
 ```
+## REST request 
+```
+import requests
+import json
+api_url = "https://..."
+headers =  {"Content-Type":"application/json",'Authorization': 'access_token myToken'}
+response = requests.get(api_url, headers=headers)
+data_dict = json.loads(response)
+# to post
+response = requests.post(api_url, data=json.dumps(data_dict), headers=headers)
 
+```
 ## python set intersection with tradeoff examples
 
 ```
