@@ -1,9 +1,94 @@
+## skeleton
+```
+#!/usr/bin/env python
+import getopt, sys, signal
+
+# for catching ctrl-c
+def sigint_handler(sig, frame):
+    print('You pressed Ctrl+C!')
+    sys.exit(0)
+
+# class skeleton
+class MyClass:
+    # object contructor
+    def __init__(self, x_var, l_var[]):
+        self.x = x_var
+        self.l = l_var[]
+    # to make the object iterable
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.l[self.index]
+    # accessor methods
+    def get_x(self):
+        return self.x
+    def set_x(self,x_val):
+        self.x = x_val
+
+    def append_l(self,l_elem):
+        self.l.append(l_elm)
+
+def 
+
+def 
+
+# Defining main function
+def main():
+    # for catching ctrl-c
+    signal.signal(signal.SIGINT, sigint_handler)
+
+    # process command line arguments the long way
+    args = sys.argv[1:]
+    options = "hf:"
+    long_options = ["Help", "My_file"]
+
+    try:
+        arguments, values = getopt.getopt(args, options, long_options)
+        for currentArg, currentVal in arguments:
+            if currentArg in ("-h", "--Help"):
+                print("Showing Help")
+            elif currentArg in ("-f", "--My_file"):
+                print("File name:", sys.argv[0])
+            else:
+                unhandled_args = sys.argv[1:] 
+    except getopt.error as e:
+        print("error message", str(e), file=sys.stderr)
+
+
+
+# Using the special variable 
+# __name__
+if __name__=="__main__":
+    main()
+```
+
+
+
+## Standard error catching
+```
+import sys
+try:
+    # do something
+except Exception as e:
+    print("error message", str(e), file=sys.stderr)
+
+```
+
 ## open and read a file
 ```
-file1 = open("MyFile.txt", "r") 
-line_3 = file1.readline([2])
-whole_file = file1.readlines()
-file1.close() 
+import sys
+try:
+    file1 = open("MyFile.txt", "r") 
+    line_3 = file1.readline([2])
+    whole_file = file1.readlines()
+    file1.close()
+except OSError: # or IOError
+    print("error message", str(e), file=sys.stderr)
+    # pass # to continue anyway
 ```
 or
 ```
@@ -331,6 +416,7 @@ for num in range(5, 11):
 #wait for them to finish    
 for num in range(5, 11):
     t[num].join()
+
 
 
 
