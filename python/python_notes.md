@@ -32,9 +32,13 @@ class MyClass:
     def append_l(self,l_elem):
         self.l.append(l_elm)
 
-def 
+def my_function(*args):
+    for arg in args:
+        print(str(arg)) 
 
-def 
+def my_function(**myDict):
+  for key, value in myDict.items():
+    print(" ", key + ":", value)
 
 # Defining main function
 def main():
@@ -416,6 +420,7 @@ for num in range(5, 11):
 #wait for them to finish    
 for num in range(5, 11):
     t[num].join()
+
 
 
 
