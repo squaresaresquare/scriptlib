@@ -3,6 +3,7 @@ import inspect
 import logging
 import signal
 import sys
+import functools
 
 class myClass:
     def __init__(self, myVar1):
@@ -52,16 +53,41 @@ def main():
     #handle SIGINT (ctrl c)
     signal.signal(signal.SIGINT, signal_handler)
   
-    c1 = myClass("something")
+    c1 = myClass([1,2,3,5,8,13,21,34])
     c1.myFunc("something new")
     for element in c1:
         print(element)
     print(str(c1))
     print(dir(c1))
     print(repr(c1))
-    print(
-          
 
+    """
+    # example to flatten this loop
+    #cartesian sum
+    test1 = []
+    for i in c1:
+        for j in c1:
+             test1.append(i+j)
+
+    test2 = [ x + y for x, y in itertools.product(c1, c1) ]
+    
+    if test1 == test2:
+       print("success")
+    else:
+       print("failed")
+    """
+
+    """
+      #json example
+    """
+
+    """
+      #re example
+    """
+    """
+      #urllib3 example
+    """
+    
 if __name__ == "__main__":
         main()
 
