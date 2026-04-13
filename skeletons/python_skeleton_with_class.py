@@ -208,7 +208,7 @@ def main():
     #points where the number >= 5 from previous and next
     #return count points
 
-    result = list(filter(lambda x: x[0] >= x[1]+5 and x[0] >= x[-1]+5, zip(rads, rads[1:])))
+    result = list(filter(lambda x: ( x[0]-5 > x[1] and x[0]-5 > x[-1] ) or ( x[0]+5 < x[1] and x[0]+5 < x[-1] ), zip(rads, rads[1:-1])))
     print(str(len(result)))
     """
 
