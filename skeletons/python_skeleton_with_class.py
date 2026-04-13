@@ -65,22 +65,7 @@ def main():
     " Python Examples "
     """
 
-    
-    """
-    # example to flatten this loop
-    #cartesian sum
-    test1 = []
-    for i in c1:
-        for j in c1:
-             test1.append(i+j)
 
-    test2 = [ x + y for x, y in itertools.product(c1, c1) ]
-    
-    if test1 == test2:
-       print("success")
-    else:
-       print("failed")
-    """
     #optparse
     """
         import optparse
@@ -99,6 +84,7 @@ def main():
         except optparse.AmbiguousOptionError as e:
             print(e)
     """
+    
       #json example
     """
     import json
@@ -117,6 +103,7 @@ def main():
     except AttributeError:
         print("Invalid key in JSON data.")
     """
+    
       #re example
     """
     #numbers divided by letters
@@ -134,6 +121,8 @@ def main():
         print("Position:", e.pos)
         print(ret_value)
     """
+
+    
     #urllib example
     """
     # post
@@ -153,6 +142,7 @@ def main():
     except urllib.error.URLError as e:
         print(e.reason)
     """"
+    
     #get with API token
     """"
     import urllib.request
@@ -166,6 +156,7 @@ def main():
     except urllib.error.URLError as e:
         print(e.reason)
     """
+    
     #list comprehension example
     """"
     fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
@@ -182,6 +173,44 @@ def main():
     newlist = [x for x in fruits if "a" in x]
     print(newlist)
     """"
+
+    #flatten cartesian sum
+    """
+     │ 1 │ 2 │ 3 │ 4 │
+    ─┼───┼───┼───┼───┤    ┌──┬──┬──┬──┐
+    5│1+5│2+5│3+5│4+5│    │ 6│ 7│ 8│ 9│
+    ─┼───┼───┼───┼───┤    ├──┼──┼──┼──┤
+    6│1+6│2+6│3+6│4+6│    │ 7│ 8│ 9│10│
+    ─┼───┼───┼───┼───┤    ├──┼──┼──┼──┤
+    7│1+7│2+7│3+7│4+7│    │ 8│ 9│10│11│
+    ─┼───┼───┼───┼───┤    ├──┼──┼──┼──┤
+    8│1+8│2+8│3+8│4+8│    │ 9│10│11│12│
+    ─┴───┴───┴───┴───┘    └──┴──┴──┴──┘
+    # example to flatten this loop
+    #cartesian sum
+    c1 = [1,2,3,4]
+    c2 = [5,6,7,8]
+    test1 = []
+    for i in c1:
+        for j in c2:
+             test1.append(i+j)
+
+    test2 = [ x + y for x, y in itertools.product(c1, c2) ]
+    
+    if test1 == test2:
+       print("success")
+    else:
+       print("failed")
+    """
+
+    """
+    rads = [8,10.7,17.1,11.2,13.5,9.9,14.9,9.4,3.1,12.7]
+    #points where the number >= 5 from previous and next
+    #return count points
+
+    result = list(filter(lambda x: x[0] >= x[1]+5 and x[0] >= x[-1]+5, zip(rads, rads[1:])))
+    print(str(len(result)))
+    """
 
 if __name__ == "__main__":
         main()
