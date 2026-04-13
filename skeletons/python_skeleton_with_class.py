@@ -114,7 +114,7 @@ def main():
     #memory efficient length of iterable
     #   length = sum(1 for _ in iterable)
     try:
-        ret_value = int(sum(1 for _ in re.finditer('[^0-9]',test)) / sum(1 for _ in re.finditer('[0-9]',test)))
+        ret_value = round(sum(1 for _ in re.finditer('[^0-9]',test)) / sum(1 for _ in re.finditer('[0-9]',test) + .0000001))
     except re.error as e:
         print("Error occurred:", e.msg)
         print("Pattern:", e.pattern)
