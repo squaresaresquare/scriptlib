@@ -61,6 +61,11 @@ def main():
     print(dir(c1))
     print(repr(c1))
 
+    """"
+    " Python Examples "
+    """
+
+    
     """
     # example to flatten this loop
     #cartesian sum
@@ -76,18 +81,108 @@ def main():
     else:
        print("failed")
     """
-
+    #optparse
+    """
+        import optparse
+        parser = optparse.OptionParser()
+        parser.add_option('-o', '--output')
+        parser.add_option('-v', dest='verbose', action='store_true')
+        opts, args = parser.parse_args()
+        try:
+            process(args, output=opts.output, verbose=opts.verbose)
+        except optparse.OptionConflictError as e:
+            print("conflicting options are added to an OptionParser.", e)
+        except optparse.OptionValueError as e:
+            print("invalid option value is encountered on the command line.", e)
+        except optparse.BadOptionError as e:
+            print("invalid option is passed on the command line.", e)
+        except optparse.AmbiguousOptionError as e:
+            print(e)
     """
       #json example
     """
-
+    import json
+    json_string = '{"name":"John"}'
+    #load to dictionsy
+    try: 
+        my_dict = json.loads(json_string)
+    except JSONDecodeError as e:
+        print(e)
+        
+    # dump dict to json string
+    try:
+        my_json = json.dumps(my_dict)
+    except TypeError:
+        print("Unable to serialize the object")
+    except AttributeError:
+        print("Invalid key in JSON data.")
     """
       #re example
     """
+    #numbers divided by letters
+    import re
+    test="hell0w0rld"
+    #return matches in an iterable
+    #    re.finditer(pattern, string)
+    #memory efficient length of iterable
+    #   length = sum(1 for _ in iterable)
+    try:
+        ret_value = int(sum(1 for _ in re.finditer('[^0-9]',test)) / sum(1 for _ in re.finditer('[0-9]',test)))
+    except re.error as e:
+        print("Error occurred:", e.msg)
+        print("Pattern:", e.pattern)
+        print("Position:", e.pos)
+        print(ret_value)
     """
-      #urllib3 example
+    #urllib example
     """
-    
+    # post
+    import urllib.request
+    import json
+
+    body = {'ids': [12, 14, 50]}
+    myurl = "http://www.testmycode.example"
+
+    req = urllib.request.Request(myurl)
+    req.add_header('Content-Type', 'application/json; charset=utf-8')
+    jsondata = json.dumps(body)
+    jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+    req.add_header('Content-Length', len(jsondataasbytes))
+    try:
+        response = urllib.request.urlopen(req, jsondataasbytes).read()
+    except urllib.error.URLError as e:
+        print(e.reason)
+    """"
+    #get with API token
+    """"
+    import urllib.request
+    import json
+    token = "your_token"
+    req = urllib.request.Request('http://www.pretend_server.org')
+    req.add_header('Content-Type', 'application/json; charset=utf-8')
+    req.add_header('Authorization', f"Bearer {token}")
+    try: response_json = urllib.request.urlopen(req).read()
+        response_dict = json.loads(response_json)
+    except urllib.error.URLError as e:
+        print(e.reason)
+    """
+    #list comprehension example
+    """"
+    fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+    newlist = []
+
+    for x in fruits:
+      if "a" in x:
+        newlist.append(x)
+
+    print(newlist)
+
+    #same as
+    fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+    newlist = [x for x in fruits if "a" in x]
+    print(newlist)
+    """"
+
 if __name__ == "__main__":
         main()
 
