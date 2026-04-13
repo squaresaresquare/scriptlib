@@ -204,12 +204,28 @@ def main():
     """
 
     """
-    rads = [8,10.7,17.1,11.2,13.5,9.9,14.9,9.4,3.1,12.7]
-    #points where the number >= 5 from previous and next
-    #return count points
+rads = [8,10.7,17.1,11.2,13.5,9.9,14.9,9.4,3.1,12.7]
+#points where the number >= 5 from previous and next
+#return count points
+print(rads)
+for i in range(1, len(rads[1:]), 1):
+    print("test " + str(rads[i]))
+    #print(str(rads[i-1]) + " " + str(rads[i]) + " " + str(rads[i-1]))
+    print(str(rads[i-1]) + " >= " + str(rads[i]+5) + " and " + str(rads[i+1]) + " >= " + str(rads[i]+5))
+    if rads[i-1] >= rads[i]+5 and rads[i+1] >= rads[i]+5:
+        print("yes " + str(rads[i]))
+    else:
+        print("no")
+    print("OR: " + str(rads[i-1]) + " <= " + str(rads[i]-5) + " and " + str(rads[i+1]) + " <= " + str(rads[i]-5))
+    if rads[i-1] <= rads[i]-5 and rads[i+1] <= rads[i]-5:
+        print("yes " + str(rads[i]))
+    else:
+        print("no")
 
-    result = list(filter(lambda x: ( x[0]-5 > x[1] and x[0]-5 > x[-1] ) or ( x[0]+5 < x[1] and x[0]+5 < x[-1] ), zip(rads, rads[1:-1])))
-    print(str(len(result)))
+# list comprehension
+result = [b for a,b,c in zip(rads, rads[1:], rads[2:]) if ( a >= b+5 and c >= b+5 ) or ( a <= b-5 and c <= b-5 )]
+print(len(result))
+
     """
 
 if __name__ == "__main__":
