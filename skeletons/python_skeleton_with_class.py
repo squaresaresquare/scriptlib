@@ -228,6 +228,28 @@ print(len(result))
 
     """
 
+#distances
+"""
+#distances
+import math
+coords = [[1,2], [5,3], [-1,7], [-1,1]]
+distances = list(map(lambda a: math.sqrt((abs(a[0])**2) + abs(a[1]**2)), coords))
+index_of_min = distances.index(min(distances))
+print(coords[index_of_min])
+"""
+#robots
+"""
+from itertools import groupby
+from operator import add
+import re
+lines = ["User-agent: googlebot", "Disallow: /shoes/" , "Disallow: /socks/", "User-agent: *", "Disallow: /admin/", "Disallow: /anomymous/", "Disallow: /misc/", "User-agent: junk", "Disallow: /junk/", "User-agent: DoeBot", "Disallow: /truth/", "Disallow: /justice/", "Disallow: /democracy/"]
+groups = [ list(v) for k,v in groupby(lines, lambda x: 'User-agent' in x) ]
+subs = [ add( *groups[i:i+2] ) for i in range(0,len(groups),2) ]
+mine = sum([ x for x in subs if f'*' in x[0] or f'DoeBot' in x[0] ], [])
+user_agents = [x.split(': ')[1] for x in mine if "Disallow" in x]
+print(user_agents)
+"""
+
 if __name__ == "__main__":
         main()
 
