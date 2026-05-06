@@ -1,4 +1,5 @@
 #!/bin/bash
+#check if you need to renew your authenticaiton
 function set_project {
   echo "$cluster not in project. Set project" >&2
   projects=( $(gcloud projects list --filter="name ~ 'box-(dev|prod|stg)-skynet'" --format="value(name)") )
