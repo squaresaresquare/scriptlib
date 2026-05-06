@@ -1,4 +1,5 @@
 #!/bin/bash
+#build gcloud commands for maintenance windows to pause cluster upgrades.
 gcloud auth print-access-token >/dev/null 2>&1 || gcloud auth login
 
 currentdate=$(date +"%s")
