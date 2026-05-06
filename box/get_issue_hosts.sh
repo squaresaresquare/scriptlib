@@ -1,4 +1,5 @@
 #!/bin/bash
+#extract host list from jira tickets created by nessus scans
 adpass=""
 while getopts ":i:p:" opt; do
     case $opt in
