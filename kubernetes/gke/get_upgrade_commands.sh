@@ -1,4 +1,5 @@
 #!/bin/bash
+#build and print command to manually update a cluster
 if [[ "$1" != "" ]];then
     version="$1"
 else
