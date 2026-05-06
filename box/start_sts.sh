@@ -1,4 +1,5 @@
 #!/bin/bash
+#get how long it takes for test statefulsets to start
 export STARTTIME=$(date)
 for i in $(seq -w 1 5)
 do 
