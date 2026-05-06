@@ -1,4 +1,5 @@
 #!/bin/bash
+#helper script to find expiring calico certs
 echo "list tigera-operator-onprem secrets"
 sudo /usr/bin/kubectl --kubeconfig=/box/kubernetes/etc/kubeconfig.kubelet get secret -n tigera-operator-onprem
 echo "list tigera-operator-onprem configmaps"
