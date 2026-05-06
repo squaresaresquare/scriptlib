@@ -1,4 +1,5 @@
 #!/bin/bash
+#helper script for cluster shutdown/upgrade
 #kubectl scale deployment --replicas=0 kube-applier -n kube-applier
 #until [[ $(kubectl get pods -n kube-applier --no-headers) == "" ]]
 #do
