@@ -1,4 +1,5 @@
 #!/bin/zsh
+#pull some gcp metrics from wavefront
 function get_date() {
     epoc_time=$1
     date -d @${epoc_time} +"%b/%d/%Y %T"
