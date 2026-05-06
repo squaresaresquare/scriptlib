@@ -1,4 +1,5 @@
 #!/bin/bash
+#recreate git tag
 tagname="$1"
 if [[ "$tagname" != "" ]];then
   git tag -fa $tagname -m "update"
