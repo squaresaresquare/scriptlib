@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Module documentation.
+WIP
 """
 import sys, os
 import splunklib.client as client
@@ -16,8 +17,8 @@ def main():
 
   HOST = "box-prod.splunkcloud.com"
   PORT = 8089
-  USERNAME = "sbobadilla"
-  PASSWORD = "Its 4 dangerous business Frodo going out your door. You step onto the road and if you dont keep your feet theres no knowing where you might be swept off to."
+  USERNAME = os.environ['USER']
+  PASSWORD = sys.argv[1]
 
   # Create a Service instance and log in 
   service = client.connect(
