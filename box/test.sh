@@ -1,5 +1,5 @@
 #!/bin/bash
-WF_TOKEN="4c98cda1-7afe-40c4-a658-30b7da5312f8"
+WF_TOKEN="$1"
 while :
 do
     curl -s -X GET --header "Accept: application/json" --header "Authorization: Bearer $WF_TOKEN" "https://box.wavefront.com/api/v2/alert?offset=${offset}" | jq '.' > tmp_file
