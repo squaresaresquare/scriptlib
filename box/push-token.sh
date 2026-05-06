@@ -1,4 +1,5 @@
 #!/bin/bash
+#update manifest and rotate artifactory cache token
 ns=$1
 kubectl delete secret artifactory-cache-token -n $ns
 sed "s/NAMESPACE/${ns}/" artifactory-cache-token.yaml > artifactory-cache-token-${ns}.yaml
