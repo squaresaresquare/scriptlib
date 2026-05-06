@@ -1,4 +1,5 @@
 #!/bin/bash
+#get all alerts from wavefront
 function cleanup()
 {
     rm $json_file
@@ -6,7 +7,7 @@ function cleanup()
     rm $report_path
 }
 
-WF_TOKEN="4c98cda1-7afe-40c4-a658-30b7da5312f8"
+WF_TOKEN="$1"
 json_file="/tmp/alert$$.json"
 tmp_file="/tmp/tmp$$.json"
 report_path="$(pwd)/alert_metrics$(date "+%Y.%m.%d.%H.%M.%S").csv"
