@@ -1,5 +1,6 @@
 #!/bin/bash
 export LOG_FILE=$1
+export SERVER=$2
 export HTML_FILE="/tmp/${LOG_FILE}.html"
 export HTML_FILE_NAME="${LOG_FILE}.html"
 if [[ ${LOG_FILE} == "" ]];then
@@ -84,10 +85,10 @@ cat <<EOT >> ${HTML_FILE}
 EOT
 echo "post to web server" >&2 
 scp -q -o StrictHostKeyChecking=no ${HTML_FILE} sbobadilla.dev.box.net:${HTML_FILE}
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo mv ${HTML_FILE} /var/www/html/"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo chown root:root /var/www/html/${HTML_FILE_NAME}"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo /usr/sbin/semanage fcontext -a -t httpd_sys_content_t /var/www/html/${HTML_FILE_NAME}"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo /usr/sbin/restorecon -Rv  /var/www/html"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo mv ${HTML_FILE} /var/www/html/"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo chown root:root /var/www/html/${HTML_FILE_NAME}"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo /usr/sbin/semanage fcontext -a -t httpd_sys_content_t /var/www/html/${HTML_FILE_NAME}"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo /usr/sbin/restorecon -Rv  /var/www/html"
 rm ${HTML_FILE}
 
-echo "http://sbobadilla.dev.box.net/${HTML_FILE_NAME}"
+echo "http://${SERVER}/${HTML_FILE_NAME}"
