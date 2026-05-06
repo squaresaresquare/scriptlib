@@ -1,4 +1,6 @@
 #!/bin/bash
+#get the cis scan results directly from every node in every cluster in every project. 
+#only run if necessary, and give the security department a heads up first, the scope of the parallelism looks like an attack.
 gcloud auth print-access-token >/dev/null 2>&1 || gcloud auth login
 [ -d cos-cis-reports ] || mkdir cos-cis-reports
 projects=($(gcloud projects list 2>/dev/null | grep skynet| grep "prod\|tools" | awk '{print $1}'))
