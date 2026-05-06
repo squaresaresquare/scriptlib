@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#get max surge for all nodepools on all projects from gcloud
 if [[ "$(hostname)" =~ "prod" ]];then
     filter="name ~ 'box-prod-skynet'"
 else
