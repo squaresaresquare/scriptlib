@@ -1,4 +1,5 @@
 #!/bin/bash
+#build the command needed to delete a node
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 hostname=$1
 zone=$(/usr/bin/kubectl get node ${hostname} -o json | jq '.metadata.labels."topology.gke.io/zone"' | sed 's/\"//g')
