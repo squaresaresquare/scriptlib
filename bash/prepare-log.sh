@@ -1,5 +1,6 @@
 #!/bin/bash
 LOG_FILE=$1
+SERVER=$2
 HMTL_FILE="${LOG_FILE}.html"
 
 if [[ ${LOG_FILE} == "" ]];then
@@ -81,8 +82,8 @@ cat <<EOT >> ${HTML_FILE}
 </html>
 EOT
 scp -q -o StrictHostKeyChecking=no ${HTML_FILE} sbobadilla.dev.box.net:~/
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo mv ~/${HTML_FILE} /var/www/http/"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo chown root:root /var/www/http/${HTML_FILE}"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo /usr/sbin/semanage fcontext -a -t httpd_sys_content_t /var/www/http/${HTML_FILE}"
-ssh -q -o StrictHostKeyChecking=no sbobadilla.dev.box.net "sudo /usr/sbin/restorecon -Rv  /var/www/html"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo mv ~/${HTML_FILE} /var/www/http/"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo chown root:root /var/www/http/${HTML_FILE}"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo /usr/sbin/semanage fcontext -a -t httpd_sys_content_t /var/www/http/${HTML_FILE}"
+ssh -q -o StrictHostKeyChecking=no ${SERVER} "sudo /usr/sbin/restorecon -Rv  /var/www/html"
 rm ${HTML_FILE}
