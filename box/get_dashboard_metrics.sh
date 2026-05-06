@@ -7,7 +7,7 @@ function cleanup()
     #rm $report_path
 }
 
-WF_API_KEY="4c98cda1-7afe-40c4-a658-30b7da5312f8"
+WF_API_KEY="$1"
 dashboards_json="/tmp/dashboards.$$.json"
 tmp_json="/tmp/tmp.$$.json"
 for file in $dashboards_json $tmp_json
