@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#helper script for shutting down tigera pods stuck because they need to be finalized
 for i in $(kubectl get ns | grep tigera | awk '{print $1}')
 do
     #kubectl delete ns $i &
