@@ -4,7 +4,7 @@ function cleanup()
     rm $tmp_json
 }
 
-WF_API_KEY="4c98cda1-7afe-40c4-a658-30b7da5312f8"
+WF_API_KEY="$i"
 dashboards_json="dashboards.json"
 tmp_json="tmp.json"
 rm $dashboards_json $tmp_json
